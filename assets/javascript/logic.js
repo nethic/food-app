@@ -2,6 +2,12 @@
 // select ingredients from categories, remove ingredients from list, add recipes to favourites list
 // return to ingredient selection menu, user accounts/save data with Firebase, second API, clean up, README, deploy, presentation
 
+var fruits = ['apple', 'kiwi', 'pear', 'orange', 'strawberry', 'grape', 'banana', 'pineapple', 'blueberry', 'raspberry', 'lemon', 'peach', 'mango', 'cherry', 'melon', 'lime', 'avocado', 'apricot', 'blackberry', 'grapefruit', 'coconut'];
+var vegetables = ['broccoli', 'tomato', 'lettuce', 'potato', 'cabbage', 'spinach', 'cucumber', 'lettuce', 'onion', 'eggplant', 'cauliflower', 'bell pepper', 'celery', 'peas', 'garlic', 'carrot', 'zucchini', 'corn', 'asparagus'];
+var grains = ['bread', 'noodles', 'rice', 'oats'];
+var dairy = ['butter, cheese', 'yogurt', 'ice cream', 'milk'];
+var meatAndAlts = ['beans', 'eggs', 'hummus', 'lentils', 'nuts', 'peanut butter', 'seeds', 'tofu', 'chicken', 'pork', 'beef', 'fish', 'ham', 'turkey'];
+var other = ['salt', 'pepper', 'sugar', 'flour', 'oil', 'vinegar'];
 var userIngrList = [];
 var ingrTabNormal = true;
 var tileNormal = true;
