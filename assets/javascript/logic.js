@@ -1,6 +1,6 @@
 
 // remove ingredients from list, add recipes to favourites list
-// return to ingredient selection menu, user accounts/save data with Firebase, second API, clean up, README, deploy, presentation
+// user accounts/save data with Firebase, second API, clean up, README, presentation
 
 var fruits = ['apple', 'kiwi', 'pear', 'orange', 'strawberry', 'grape', 'banana', 'pineapple', 'blueberry', 'raspberry', 'lemon', 'peach', 'mango', 'cherry', 'melon', 'lime', 'avocado', 'apricot', 'blackberry', 'grapefruit', 'coconut'];
 var vegetables = ['broccoli', 'tomato', 'lettuce', 'potato', 'cabbage', 'spinach', 'cucumber', 'lettuce', 'onion', 'eggplant', 'cauliflower', 'bell pepper', 'celery', 'peas', 'garlic', 'carrot', 'zucchini', 'corn', 'asparagus'];
@@ -96,7 +96,7 @@ function populateRecipes(response) {
     $('#food-tiles').addClass('d-none');
     $('#recipe-tiles').removeClass('d-none');
     for (var i = 0; i < response.hits.length; i++) {
-        var recipeDiv = $('<div>').addClass('recipe bg bg-warning p-3 text-white mb-3 d-flex flex-column');
+        var recipeDiv = $('<div>').addClass('recipe bg bg-success p-3 text-white mb-3 d-flex flex-column');
         var recipeTitle = $('<h5>').text(response.hits[i].recipe.label).addClass('mx-auto mb-2');
         var recipeLink = $('<a>').attr('href', response.hits[i].recipe.url).addClass('mx-auto');
         var recipeImg = $('<img>').attr('src', response.hits[i].recipe.image).addClass('d-block mx-auto mb-2');
@@ -162,4 +162,10 @@ $('.container-fluid').on('click', '.ingr', function() {
     userIngrList.push(item.text());
     console.log(userIngrList);
     $('#ingr-list').append()
+});
+
+$('body').on('click', '.home-link', function() {
+    event.preventDefault();
+    $('#food-tiles').removeClass('d-none');
+    $('#recipe-tiles').addClass('d-none');
 });
