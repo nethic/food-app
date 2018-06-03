@@ -1,0 +1,47 @@
+
+#search-bar {
+    width: calc( 100% - 80px );
+    max-width: 600px;
+}
+
+#user-ingr {
+    overflow: hidden;
+}
+
+.tile {
+    width: 200px;
+    height: 200px;
+}
+
+img {
+    border: 10px solid white;
+    align-self: center;
+}
+
+h4 {
+    color: white;
+}
+
+#fruits {
+    background-color: orange;
+}
+
+#vegetables {
+    background-color: green;
+}
+
+#grains {
+    background-color: brown;
+}
+
+#dairy {
+    background-color: blue;
+}
+
+#meat {
+    background-color: red;
+}
+
+#other {
+    background-color: gray;
+}
