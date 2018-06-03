@@ -15,18 +15,18 @@
     <title>Food App</title>
   </head>
   <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Foodtacular</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Favourite Recipes</a>
-                </div>
-            </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Foodtacular</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                  <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+                  <a class="nav-item nav-link" href="#">Favourite Recipes</a>
+              </div>
+          </div>
+      </nav>
 
       <div class='container-fluid'>
 
@@ -49,23 +49,29 @@
 
         <div class='row' id='food-tiles'>
           <div class='col d-flex flex-wrap justify-content-center'>
-            <div class='m-3 p-3 tile d-flex' id='fruits'>
+            <div class='m-3 p-3 tile d-flex flex-column' id='fruits'>
               <h4 class='m-auto'>Fruits</h4>
+              <div class='d-none list' id='fruits-list'></div>
             </div>
-            <div class='m-3 p-3 tile d-flex'id='vegetables'>
+            <div class='m-3 p-3 tile d-flex flex-column'id='vegetables'>
               <h4 class='m-auto'>Vegetables</h4>
+              <div class='d-none list' id='vegetables-list'></div>
             </div>
-            <div class='m-3 p-3 tile d-flex' id='grains'>
+            <div class='m-3 p-3 tile d-flex flex-column' id='grains'>
               <h4 class='m-auto'>Grains</h4>
+              <div class='d-none list' id='grains-list'></div>
             </div>
-            <div class='m-3 p-3 tile d-flex' id='dairy'>
+            <div class='m-3 p-3 tile d-flex flex-column' id='dairy'>
               <h4 class='m-auto'>Dairy</h4>
+              <div class='d-none list' id='dairy-list'></div>
             </div>
-            <div class='m-3 p-3 tile d-flex' id='meat'>
+            <div class='m-3 p-3 tile d-flex flex-column' id='meat'>
               <h4 class='m-auto'>Meat /<br>Alternatives</h4>
+              <div class='d-none list' id='meat-alts-list'></div>
             </div>
-            <div class='m-3 p-3 tile d-flex' id='other'>
+            <div class='m-3 p-3 tile d-flex flex-column' id='other'>
                 <h4 class='m-auto'>Other</h4>
+                <div class='d-none list' id='other-list'></div>
             </div>
           </div>
         </div>

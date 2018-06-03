@@ -1,11 +1,11 @@
 
-// select ingredients from categories, remove ingredients from list, add recipes to favourites list
+// remove ingredients from list, add recipes to favourites list
 // return to ingredient selection menu, user accounts/save data with Firebase, second API, clean up, README, deploy, presentation
 
 var fruits = ['apple', 'kiwi', 'pear', 'orange', 'strawberry', 'grape', 'banana', 'pineapple', 'blueberry', 'raspberry', 'lemon', 'peach', 'mango', 'cherry', 'melon', 'lime', 'avocado', 'apricot', 'blackberry', 'grapefruit', 'coconut'];
 var vegetables = ['broccoli', 'tomato', 'lettuce', 'potato', 'cabbage', 'spinach', 'cucumber', 'lettuce', 'onion', 'eggplant', 'cauliflower', 'bell pepper', 'celery', 'peas', 'garlic', 'carrot', 'zucchini', 'corn', 'asparagus'];
 var grains = ['bread', 'noodles', 'rice', 'oats'];
-var dairy = ['butter, cheese', 'yogurt', 'ice cream', 'milk'];
+var dairy = ['butter', 'cheese', 'yogurt', 'ice cream', 'milk'];
 var meatAndAlts = ['beans', 'eggs', 'hummus', 'lentils', 'nuts', 'peanut butter', 'seeds', 'tofu', 'chicken', 'pork', 'beef', 'fish', 'ham', 'turkey'];
 var other = ['salt', 'pepper', 'sugar', 'flour', 'oil', 'vinegar'];
 var userIngrList = [];
@@ -20,6 +20,9 @@ $('.tile').on('click', function() {
         }, 1000);
         $('.tile').removeClass('d-flex').addClass('d-none');
         $(this).removeClass('d-none').addClass('d-flex');
+        var divID = $(this).attr('id');
+        $('.list').empty();
+        populateCategories(divID);
         tileNormal = false;
     }
     else if (tileNormal === false) {
@@ -30,6 +33,7 @@ $('.tile').on('click', function() {
         setTimeout(function() {
             $('.tile').removeClass('d-none').addClass('d-flex');
         }, 500);
+        $('.list').addClass('d-none');
         tileNormal = true;
     }
 });
@@ -102,3 +106,60 @@ function populateRecipes(response) {
         $('#recipe-list').append(recipeDiv);
     }
 };
+
+function populateCategories(divID) {
+    setTimeout(function() {
+        if (divID === 'fruits') {
+            console.log(divID);
+            for (var i = 0; i < fruits.length; i++) {
+                var ingrBtn = $('<button>').text(fruits[i]).addClass('btn m-1 ingr');
+                $('#fruits-list').append(ingrBtn);
+            }
+            $('#fruits-list').removeClass('d-none');
+        }
+        else if (divID === 'vegetables') {
+            for (var i = 0; i < vegetables.length; i++) {
+                var ingrBtn = $('<button>').text(vegetables[i]).addClass('btn m-1 ingr');
+                $('#vegetables-list').append(ingrBtn);
+            }
+            $('#vegetables-list').removeClass('d-none');
+        }
+        else if (divID === 'grains') {
+            for (var i = 0; i < grains.length; i++) {
+                var ingrBtn = $('<button>').text(grains[i]).addClass('btn m-1 ingr');
+                $('#grains-list').append(ingrBtn);
+            }
+            $('#grains-list').removeClass('d-none');
+        }
+        else if (divID === 'dairy') {
+            for (var i = 0; i < dairy.length; i++) {
+                var ingrBtn = $('<button>').text(dairy[i]).addClass('btn m-1 ingr');
+                $('#dairy-list').append(ingrBtn);
+            }
+            $('#dairy-list').removeClass('d-none');
+        }
+        else if (divID === 'meat') {
+            for (var i = 0; i < meatAndAlts.length; i++) {
+                var ingrBtn = $('<button>').text(meatAndAlts[i]).addClass('btn m-1 ingr');
+                $('#meat-alts-list').append(ingrBtn);
+            }
+            $('#meat-alts-list').removeClass('d-none');
+        }
+        else if (divID === 'other') {
+            for (var i = 0; i < other.length; i++) {
+                var ingrBtn = $('<button>').text(other[i]).addClass('btn m-1 ingr');
+                $('#other-list').append(ingrBtn);
+            }
+            $('#other-list').removeClass('d-none');
+        }
+    }, 900);
+};
+
+$('.container-fluid').on('click', '.ingr', function() {
+    var temp = $(this).text();
+    var item = $('<h6 class="mx-auto">').text(temp.toLowerCase());
+    $('#ingr-list').append(item);
+    userIngrList.push(item.text());
+    console.log(userIngrList);
+    $('#ingr-list').append()
+});
