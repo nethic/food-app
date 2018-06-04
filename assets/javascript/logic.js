@@ -371,7 +371,7 @@ function populateNutrition(response) {
     $('#custom-nutrition').addClass('d-none');
     $('#nutrition-results-row').removeClass('d-none');
         var nutritionDiv = $('<div>').addClass('recipe bg bg-success p-3 text-white mb-3 d-flex flex-column');
-        var nutrition = $('<h5>').text('Calories:' + response.calories).addClass('mx-auto mb-2');
+        var nutrition = $('<h5>').text('Calories: ' + response.calories).addClass('mx-auto mb-2');
         nutritionDiv.append(nutrition);
         $('#nutrition-results-div').append(nutritionDiv);
 };
