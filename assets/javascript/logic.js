@@ -25,7 +25,7 @@ console.log(rootRef)
 
 
 function addNew(){
-rootRef.child('users/'+userId).update({
+rootRef.child('users/'+ userId +'/userData').update({
     userIngr : userIngrList
 });
 };
@@ -86,8 +86,10 @@ $("#signupButt").on("click", function (e){
 
     auth.createUserWithEmailAndPassword(email, password)
     .then(function(user) {
-        console.log(user.uid);
+        
+        
         console.log("user created!");
+        
       })
       .catch(function(error) {
         console.log(error.code);
@@ -100,7 +102,7 @@ $("#myAcc").on('click', function(e){
     e.preventDefault();
     console.log(userId);
 
-    rootRef.child('users/'+userId+'/userIngr').once('value').then(function(snapshot) {
+    rootRef.child('users/'+userId+'/userData/userIngr').once('value').then(function(snapshot) {
         console.log(snapshot.val());
     
         
@@ -118,13 +120,13 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(user.uid);
       userId = user.uid;
 
-    rootRef.child('users/'+userId+'/userIngr').once('value').then(function(snapshot) {
+    rootRef.child('users/'+userId+'/userData/userIngr').once('value').then(function(snapshot) {
         console.log(snapshot.val());
         if(snapshot.val() === null){
-            console.log("no ingredients stord in account")
+            console.log("no ingredients stored in account")
         }
         else{
-           var userIngrList = snapshot.val();
+            userIngrList = snapshot.val();
            for ( i = 0; i < userIngrList.length; i++) {
             console.log(userIngrList[i]);
                     var temp = userIngrList[i];
