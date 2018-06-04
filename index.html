@@ -15,20 +15,31 @@
     <title>Food App</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:0px ">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav d-flex ">
-              <img src="assets/images/logo.svg" style=" padding-left: 20px; padding-right: 40px;  border-top-right-radius: 30px; border-bottom-right-radius: 30px; border: 1px;  background-color: grey ;height: 70px; ">
 
-              <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>  
-              <a class="nav-item nav-link custom-link" href="#">Custom Recipe Nutrition</a>
-              <a class="nav-item nav-link" href="#">Favourite Recipes</a>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:0px ">
+      <img src="assets/images/logo.svg" style=" padding-left: 20px; padding-right: 40px;  border-top-right-radius: 30px; border-bottom-right-radius: 30px; border: 1px;  background-color: grey ;height: 70px; ">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-around" id="navbarNavAltMarkup">
+        <div class="navbar-nav d-flex ">
+          <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>  
+          <a class="nav-item nav-link custom-link" href="#">Custom Recipe Nutrition</a>
+          <a class="nav-item nav-link" href="#">Favourite Recipes</a>
+        </div>
       </div>
-  </nav>
+      <div class="row" style="right: 0px;">
+        <form class=" form-column" >
+            <input class="form-control form-control-sm" type="email" placeholder="email">
+            <input class="form-control form-control-sm" type="password" placeholder="password">
+        </form>
+        <form class="d-block form-inline">
+            <button class="col btn btn-dark btn-sm" type="submit">signup</button>
+            <button class="col btn btn-dark btn-sm" type="submit"> Login </button>
+        </form>
+      </div>
+      
+    </nav>
 
       
 
