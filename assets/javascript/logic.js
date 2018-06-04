@@ -14,35 +14,21 @@ var tileNormal = true;
 
 var database = firebase.database();
 var rootRef = database.ref();
-var newUser = rootRef.push();
 var user = firebase.auth().currentUser;
 var userId;
 var  email = $("#email").val()
 var  password = $("#passWord").val();
 var auth = firebase.auth();
 
-//var email = "placeholder@email.com"
 
 console.log(rootRef)
-// $( document ).ready(function() {
-//     console.log( "testing.." );
-//     var user = firebase.auth().currentUser;
-//     console.log(user);
-// });
-// function writeUserData(email) {
-//     firebase.database().ref('users/' + userId).set({
-//       email: email,
-//     });
-//   }
-// writeUserData();
-
-// var admin = require("firebase-admin");
-// var db = admin.database();
-// var ref = db.ref("server/saving-data/fireblog");
 
 
-
-
+function addNew(){
+rootRef.child('users/'+userId).update({
+    userIngr : userIngrList
+});
+};
 
 
 firebase.auth().onAuthStateChanged(function(user) {
@@ -61,6 +47,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
   });
 
+
 $("#loginButt").on("click", function(e){
     e.preventDefault();
 
@@ -72,12 +59,11 @@ $("#loginButt").on("click", function(e){
     console.log(error.message);
     alert(error.message);
  });
-
 })
+
 
 $("#logoutButt").on('click', function(e){
     e.preventDefault();
-
     console.log("logout");
     firebase.auth().signOut()
     .then(function() {
@@ -113,17 +99,42 @@ $("#signupButt").on("click", function (e){
 $("#myAcc").on('click', function(e){
     e.preventDefault();
     console.log(userId);
+
+    rootRef.child('users/'+userId+'/userIngr').once('value').then(function(snapshot) {
+        console.log(snapshot.val());
+    
+        
+         });
+
+    
 })
 
 
 
 firebase.auth().onAuthStateChanged(function(user) {
+
     if (user) {
+        
       console.log(user.uid);
       userId = user.uid;
-      firebase.database().ref('users/' + user.uid).set({
-        email: user.email
-    });
+
+    rootRef.child('users/'+userId+'/userIngr').once('value').then(function(snapshot) {
+        console.log(snapshot.val());
+        if(snapshot.val() === null){
+            console.log("no ingredients stord in account")
+        }
+        else{
+           var userIngrList = snapshot.val();
+           for ( i = 0; i < userIngrList.length; i++) {
+            console.log(userIngrList[i]);
+                    var temp = userIngrList[i];
+                    var item = $('<h6 class="mx-auto">').text(temp.toLowerCase());
+                    $('#ingr-list').append(item);
+                    $('#ingr-list').append()
+                    }
+        
+         }});
+      
     } else {
       // No user is signed in.
     }
@@ -198,6 +209,7 @@ $('#search-area').on('click', '#search-button', function() {
     $('#ingr-list').append(item);
     userIngrList.push(item.text());
     console.log(userIngrList);
+    addNew();
   });
 
   // Recipe Search API
@@ -296,6 +308,8 @@ $('.container-fluid').on('click', '.ingr', function() {
     userIngrList.push(item.text());
     console.log(userIngrList);
     $('#ingr-list').append()
+
+    addNew();
 });
 
 $('body').on('click', '.home-link', function() {
