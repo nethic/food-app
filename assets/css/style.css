@@ -8,10 +8,17 @@
     overflow: hidden;
 }
 
+.navbar-nav a {
+    line-height: 70px;
+    padding: 0px;
+
+}
+
 .tile {
     width: 200px;
     height: 200px;
 }
+
 
 img {
     border: 10px solid white;
