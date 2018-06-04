@@ -177,9 +177,49 @@ $('body').on('click', '.custom-link', function() {
     $('#custom-ingr').empty();
     for (var i = 0; i < userIngrList.length; i++) {
         var customDiv = $('<div>').addClass('d-flex flex-row ml-5 pl-5 my-2');
-        var customInput = $('<input>').addClass('form-control mr-2 w-50');
+        var customInput = $('<input>').addClass('form-control mr-2 w-50 nutrition-input');
         var customIngr = $('<h5>').text(userIngrList[i]);
         customDiv.append(customInput, customIngr);
         $('#custom-ingr').append(customDiv);
     }
 });
+
+// Nutrition Search API
+
+var nutritionAppID = '24041931';
+var nutritionAPIkey = 'b2daf41cdcd9d9cbf667f4176e7bea92';
+
+$('.container-fluid').on('click', '#nutrition-button', function() {
+    event.preventDefault();
+    $('#nutrition-list').empty();
+    var nutritionSearch = '';
+    var nutritionArr = [];
+    $(".nutrition-input").each(function(){
+        var val = $(this).val();
+        nutritionArr.push(val);
+        console.log(val);
+        console.log(nutritionArr);
+    });
+    for (var i = 0; i < userIngrList.length; i++) {
+        nutritionSearch += nutritionArr[i] + ' ' + userIngrList[i] + ' ';
+    }
+    console.log(nutritionSearch);
+    nutritionSearch = encodeURIComponent(nutritionSearch.trim());
+    var nutritionQuery = 'https://api.edamam.com/api/nutrition-data?app_id=' + nutritionAppID + '&app_key=' + nutritionAPIkey + '&ingr=' + nutritionSearch;
+    $.ajax({
+    url: nutritionQuery,
+    method: 'GET'
+  }).then(function(response) {
+    console.log(response);
+    populateNutrition(response);
+  });
+});
+
+function populateNutrition(response) {
+    $('#custom-nutrition').addClass('d-none');
+    $('#nutrition-results-row').removeClass('d-none');
+        var nutritionDiv = $('<div>').addClass('recipe bg bg-success p-3 text-white mb-3 d-flex flex-column');
+        var nutrition = $('<h5>').text('Calories:' + response.calories).addClass('mx-auto mb-2');
+        nutritionDiv.append(nutrition);
+        $('#nutrition-results-div').append(nutritionDiv);
+};
