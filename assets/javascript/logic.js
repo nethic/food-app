@@ -13,9 +13,10 @@ var ingrTabNormal = true;
 var tileNormal = true;
 
 var database = firebase.database();
-var rootRef = firebase.database().ref();
+var rootRef = database.ref();
 var newUser = rootRef.push();
-
+var user = firebase.auth().currentUser;
+var userId;
 var  email = $("#email").val()
 var  password = $("#passWord").val();
 var auth = firebase.auth();
@@ -23,12 +24,26 @@ var auth = firebase.auth();
 //var email = "placeholder@email.com"
 
 console.log(rootRef)
+// $( document ).ready(function() {
+//     console.log( "testing.." );
+//     var user = firebase.auth().currentUser;
+//     console.log(user);
+// });
+// function writeUserData(email) {
+//     firebase.database().ref('users/' + userId).set({
+//       email: email,
+//     });
+//   }
+// writeUserData();
 
-$( document ).ready(function() {
-    console.log( "testing.." );
-    var user = firebase.auth().currentUser;
-    console.log(user);
-});
+// var admin = require("firebase-admin");
+// var db = admin.database();
+// var ref = db.ref("server/saving-data/fireblog");
+
+
+
+
+
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -51,12 +66,12 @@ $("#loginButt").on("click", function(e){
 
     email = $("#email").val()
     password = $("#passWord").val();
- 
+
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     console.log(error.code);
     console.log(error.message);
-
- }); 
+    alert(error.message);
+ });
 
 })
 
@@ -81,10 +96,11 @@ $("#signupButt").on("click", function (e){
     e.preventDefault();
 
     email = $("#email").val()
-    password = $("#passWord").val(); 
-    
+    password = $("#passWord").val();
+
     auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
+    .then(function(user) {
+        console.log(user.uid);
         console.log("user created!");
       })
       .catch(function(error) {
@@ -92,13 +108,37 @@ $("#signupButt").on("click", function (e){
         alert(error.message);
       });
 
+});
+
+$("#myAcc").on('click', function(e){
+    e.preventDefault();
+    console.log(userId);
 })
 
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(user.uid);
+      userId = user.uid;
+      firebase.database().ref('users/' + user.uid).set({
+        email: user.email
+    });
+    } else {
+      // No user is signed in.
+    }
+  });
 
 auth.onAuthStateChanged(firebaseUSer => {});
 
 
 
+
+
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
 
 
 
@@ -159,12 +199,12 @@ $('#search-area').on('click', '#search-button', function() {
     userIngrList.push(item.text());
     console.log(userIngrList);
   });
-  
+
   // Recipe Search API
-  
+
   var recipeAppID = 'f5710785';
   var recipeAPIkey = '8392091036762a8454001f22166942cf';
-  
+
   $('.container-fluid').on('click', '#recipe-button', function() {
     event.preventDefault();
     $('#recipe-list').empty();
