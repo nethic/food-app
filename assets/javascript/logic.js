@@ -12,6 +12,155 @@ var userIngrList = [];
 var ingrTabNormal = true;
 var tileNormal = true;
 
+var database = firebase.database();
+var rootRef = database.ref();
+var user = firebase.auth().currentUser;
+var userId;
+var  email = $("#email").val()
+var  password = $("#passWord").val();
+var auth = firebase.auth();
+
+
+console.log(rootRef)
+
+
+function addNew(){
+rootRef.child('users/'+ userId +'/userData').update({
+    userIngr : userIngrList
+});
+};
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('logged in')
+      $('#loginButt').css("display", "none");
+      $('#logoutButt').css("display","");
+      $('#signupButt').css("display", "none");
+      $('#myAcc').css("display", "");
+    } else {
+      console.log('logged out');
+      $('#logoutButt').css("display", "none");
+      $('#loginButt').css("display","");
+      $('#myAcc').css("display", "none");
+      $('#signupButt').css("display", "");
+    }
+  });
+
+
+$("#loginButt").on("click", function(e){
+    e.preventDefault();
+
+    email = $("#email").val()
+    password = $("#passWord").val();
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+    alert(error.message);
+ });
+})
+
+
+$("#logoutButt").on('click', function(e){
+    e.preventDefault();
+    console.log("logout");
+    firebase.auth().signOut()
+    .then(function() {
+
+    console.log("signed out succesfully");
+  })
+  .catch(function(error) {
+
+    console.log(error.code);
+    console.log(error.message);
+
+  });
+})
+
+$("#signupButt").on("click", function (e){
+    e.preventDefault();
+
+    email = $("#email").val()
+    password = $("#passWord").val();
+
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(function(user) {
+        
+        
+        console.log("user created!");
+        
+      })
+      .catch(function(error) {
+        console.log(error.code);
+        alert(error.message);
+      });
+
+});
+$("#clear").on("click",function(){
+    $("h6").empty();
+});
+$("#myAcc").on('click', function(e){
+    e.preventDefault();
+    console.log(userId);
+
+    rootRef.child('users/'+userId+'/userData/userIngr').once('value').then(function(snapshot) {
+        console.log(snapshot.val());
+    
+        
+         });
+
+    
+})
+
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+        
+      console.log(user.uid);
+      userId = user.uid;
+
+    rootRef.child('users/'+userId+'/userData/userIngr').once('value').then(function(snapshot) {
+        console.log(snapshot.val());
+        if(snapshot.val() === null){
+            console.log("no ingredients stored in account")
+        }
+        else{
+            userIngrList = snapshot.val();
+           for ( i = 0; i < userIngrList.length; i++) {
+            console.log(userIngrList[i]);
+                    var temp = userIngrList[i];
+                    var item = $('<h6 class="mx-auto">').text(temp.toLowerCase());
+                    $('#ingr-list').append(item);
+                    $('#ingr-list').append()
+                    }
+        
+         }});
+      
+    } else {
+      // No user is signed in.
+    }
+  });
+
+auth.onAuthStateChanged(firebaseUSer => {});
+
+
+
+
+
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
+// FIREBASE STUFF ABOVE
+
+
+
+
+
+
+
 $('.tile').on('click', function() {
     if (tileNormal === true) {
         $(this).animate({
@@ -64,13 +213,14 @@ $('#search-area').on('click', '#search-button', function() {
     $('#ingr-list').append(item);
     userIngrList.push(item.text());
     console.log(userIngrList);
+    addNew();
   });
-  
+
   // Recipe Search API
-  
+
   var recipeAppID = 'f5710785';
   var recipeAPIkey = '8392091036762a8454001f22166942cf';
-  
+
   $('.container-fluid').on('click', '#recipe-button', function() {
     event.preventDefault();
     $('#recipe-list').empty();
@@ -162,6 +312,8 @@ $('.container-fluid').on('click', '.ingr', function() {
     userIngrList.push(item.text());
     console.log(userIngrList);
     $('#ingr-list').append()
+
+    addNew();
 });
 
 $('body').on('click', '.home-link', function() {

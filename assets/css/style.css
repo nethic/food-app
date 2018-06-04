@@ -8,11 +8,24 @@
     overflow: hidden;
 }
 
+
+
+
+
+.navbar-nav a {
+    line-height: 70px;
+    padding: 0px;
+
+}
+
 .tile {
     width: 200px;
     height: 200px;
 }
 
+div {
+    border-radius: 20px;
+}
 img {
     border: 10px solid white;
     align-self: center;
@@ -44,4 +57,10 @@ h4 {
 
 #other {
     background-color: gray;
+}
+#clear{
+    border-radius: 5px;
+    width:30%;
+    
+   align-self: center;
 }

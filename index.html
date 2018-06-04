@@ -15,19 +15,37 @@
     <title>Food App</title>
   </head>
   <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand home-link" href="#">Foodtacular</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                  <a class="nav-item nav-link home-link" href="#">Home</a>
-                  <a class="nav-item nav-link custom-link" href="#">Custom Recipe Nutrition</a>
-                  <a class="nav-item nav-link favourite-link" href="#">Favourite Recipes</a>
-              </div>
-          </div>
-      </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:0px ">
+      <img src="assets/images/logo.svg" style=" padding-left: 20px; padding-right: 40px;  border-top-right-radius: 30px; border-bottom-right-radius: 30px; border: 1px;  background-color: grey ;height: 70px; ">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-around" id="navbarNavAltMarkup">
+        <div class="navbar-nav d-flex ">
+          <a class="nav-item nav-link active" href="index.html">Home<span class="sr-only">(current)</span></a>  
+          <a class="nav-item nav-link custom-link" href="#">Custom Recipe Nutrition</a>
+          <a class="nav-item nav-link" href="#">Favourite Recipes</a>
+        </div>
+      </div>
+      <div class="row" style="right: 0px;">
+        <form class=" form-column" >
+            <input class="form-control form-control-sm" id="email" type="email" placeholder="email" style=" border-radius: 20px; width: 286px">
+            <input class="form-control form-control-sm" id="passWord" type="password" placeholder="password" style=" border-radius: 20px; width: 286px">
+        </form>
+        <form class="d-block form-inline" style="width: 94px">
+            <button class="col btn btn-dark btn-sm" id="signupButt" type="submit" style=" border-radius: 20px;">SignUp</button>
+            <button class="col btn btn-dark btn-sm" id="myAcc" type="submit" style=" border-radius: 20px;">MyAccount</button>
+
+            <button class="col btn btn-dark btn-sm" id="loginButt" type="submit" style=" border-radius: 20px;"> Login </button>
+            <button class="col btn btn-dark btn-sm" id="logoutButt" type="submit" style=" border-radius: 20px; display: none"> Logout </button>
+
+        </form>
+      </div>
+      
+    </nav>
+
+      
 
       <div class='container-fluid'>
 
@@ -41,12 +59,14 @@
           </div>
         </div>
 
-        <div class='row'>
             <div class='col p-3 mx-3 bg bg-primary d-flex flex-column justify-content-center text-white' id='user-ingr'>
                 <h5 class='mx-auto mb-auto'>Current Ingredients (View/Hide)</h5>
-                <div class='d-none' id='ingr-list'></div>
+                <div class='d-none' id='ingr-list'>
+                    <button id="clear">Clear</button>
+                </div>
+                
             </div>
-        </div>
+        
 
         <div class='row' id='food-tiles'>
           <div class='col d-flex flex-wrap justify-content-center'>
@@ -97,7 +117,7 @@
           </div>
 
         <div class='footer fixed-bottom  bg bg-dark text-muted d-flex'>
-            <h6 class='mx-auto my-3'>LNRV Development Team 2018</h5>
+            <h5 class='mx-auto my-3'>LNRV Development Team 2018</h5>
         </div>
       </div>
 
