@@ -12,6 +12,100 @@ var userIngrList = [];
 var ingrTabNormal = true;
 var tileNormal = true;
 
+var database = firebase.database();
+var rootRef = firebase.database().ref();
+var newUser = rootRef.push();
+
+var  email = $("#email").val()
+var  password = $("#passWord").val();
+var auth = firebase.auth();
+
+//var email = "placeholder@email.com"
+
+console.log(rootRef)
+
+$( document ).ready(function() {
+    console.log( "testing.." );
+    var user = firebase.auth().currentUser;
+    console.log(user);
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('logged in')
+      $('#loginButt').css("display", "none");
+      $('#logoutButt').css("display","");
+      $('#signupButt').css("display", "none");
+      $('#myAcc').css("display", "");
+    } else {
+      console.log('logged out');
+      $('#logoutButt').css("display", "none");
+      $('#loginButt').css("display","");
+      $('#myAcc').css("display", "none");
+      $('#signupButt').css("display", "");
+    }
+  });
+
+$("#loginButt").on("click", function(e){
+    e.preventDefault();
+
+    email = $("#email").val()
+    password = $("#passWord").val();
+ 
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+
+ }); 
+
+})
+
+$("#logoutButt").on('click', function(e){
+    e.preventDefault();
+
+    console.log("logout");
+    firebase.auth().signOut()
+    .then(function() {
+
+    console.log("signed out succesfully");
+  })
+  .catch(function(error) {
+
+    console.log(error.code);
+    console.log(error.message);
+
+  });
+})
+
+$("#signupButt").on("click", function (e){
+    e.preventDefault();
+
+    email = $("#email").val()
+    password = $("#passWord").val(); 
+    
+    auth.createUserWithEmailAndPassword(email, password)
+    .then(function() {
+        console.log("user created!");
+      })
+      .catch(function(error) {
+        console.log(error.code);
+        alert(error.message);
+      });
+
+})
+
+
+auth.onAuthStateChanged(firebaseUSer => {});
+
+
+
+
+
+
+
+
+
+
 $('.tile').on('click', function() {
     if (tileNormal === true) {
         $(this).animate({

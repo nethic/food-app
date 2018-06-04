@@ -30,12 +30,16 @@
       </div>
       <div class="row" style="right: 0px;">
         <form class=" form-column" >
-            <input class="form-control form-control-sm" type="email" placeholder="email">
-            <input class="form-control form-control-sm" type="password" placeholder="password">
+            <input class="form-control form-control-sm" id="email" type="email" placeholder="email" style=" border-radius: 20px; width: 286px">
+            <input class="form-control form-control-sm" id="passWord" type="password" placeholder="password" style=" border-radius: 20px; width: 286px">
         </form>
-        <form class="d-block form-inline">
-            <button class="col btn btn-dark btn-sm" type="submit">signup</button>
-            <button class="col btn btn-dark btn-sm" type="submit"> Login </button>
+        <form class="d-block form-inline" style="width: 94px">
+            <button class="col btn btn-dark btn-sm" id="signupButt" type="submit" style=" border-radius: 20px;">SignUp</button>
+            <button class="col btn btn-dark btn-sm" id="myAcc" type="submit" style=" border-radius: 20px;">MyAccount</button>
+
+            <button class="col btn btn-dark btn-sm" id="loginButt" type="submit" style=" border-radius: 20px;"> Login </button>
+            <button class="col btn btn-dark btn-sm" id="logoutButt" type="submit" style=" border-radius: 20px; display: none"> Logout </button>
+
         </form>
       </div>
       
@@ -55,12 +59,11 @@
           </div>
         </div>
 
-        <div class='row'>
             <div class='col p-3 mx-3 bg bg-primary d-flex flex-column justify-content-center text-white' id='user-ingr'>
                 <h5 class='mx-auto mb-auto'>Current Ingredients (View/Hide)</h5>
                 <div class='d-none' id='ingr-list'></div>
             </div>
-        </div>
+        
 
         <div class='row' id='food-tiles'>
           <div class='col d-flex flex-wrap justify-content-center'>
