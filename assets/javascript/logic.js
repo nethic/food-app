@@ -97,7 +97,9 @@ $("#signupButt").on("click", function (e){
       });
 
 });
-
+$("#clear").on("click",function(){
+    $("h6").empty();
+});
 $("#myAcc").on('click', function(e){
     e.preventDefault();
     console.log(userId);
