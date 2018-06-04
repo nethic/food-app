@@ -22,8 +22,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                  <a class="nav-item nav-link home-link" href="#">Home<span class="sr-only">(current)</span></a>
-                  <a class="nav-item nav-link" href="#">Favourite Recipes</a>
+                  <a class="nav-item nav-link home-link" href="#">Home</a>
+                  <a class="nav-item nav-link custom-link" href="#">Custom Recipe Nutrition</a>
+                  <a class="nav-item nav-link favourite-link" href="#">Favourite Recipes</a>
               </div>
           </div>
       </nav>
@@ -80,6 +81,12 @@
             <div class='col d-flex flex-column' id='recipe-list'>
                 <!-- Populate recipe results here -->
             </div>
+        </div>
+
+        <div class='row d-none' id='custom-nutrition'>
+          <div class='col'>
+            <form class='d-flex flex-column p-3' id='custom-ingr'></form>
+          </div>
         </div>
 
         <div class='footer fixed-bottom  bg bg-dark text-muted d-flex'>

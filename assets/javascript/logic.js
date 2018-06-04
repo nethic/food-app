@@ -169,3 +169,17 @@ $('body').on('click', '.home-link', function() {
     $('#food-tiles').removeClass('d-none');
     $('#recipe-tiles').addClass('d-none');
 });
+
+$('body').on('click', '.custom-link', function() {
+    event.preventDefault();
+    $('#food-tiles').addClass('d-none');
+    $('#custom-nutrition').removeClass('d-none');
+    $('#custom-ingr').empty();
+    for (var i = 0; i < userIngrList.length; i++) {
+        var customDiv = $('<div>').addClass('d-flex flex-row ml-5 pl-5 my-2');
+        var customInput = $('<input>').addClass('form-control mr-2 w-50');
+        var customIngr = $('<h5>').text(userIngrList[i]);
+        customDiv.append(customInput, customIngr);
+        $('#custom-ingr').append(customDiv);
+    }
+});
