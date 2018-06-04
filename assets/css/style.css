@@ -58,3 +58,9 @@ h4 {
 #other {
     background-color: gray;
 }
+#clear{
+    border-radius: 5px;
+    width:30%;
+    
+   align-self: center;
+}
