@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+
+
+
+
 .navbar-nav a {
     line-height: 70px;
     padding: 0px;
@@ -19,7 +23,9 @@
     height: 200px;
 }
 
-
+div {
+    border-radius: 20px;
+}
 img {
     border: 10px solid white;
     align-self: center;
