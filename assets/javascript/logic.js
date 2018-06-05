@@ -98,7 +98,10 @@ $("#signupButt").on("click", function (e){
 
 });
 $("#clear").on("click",function(){
+    userIngrList = []; 
     $("h6").empty();
+    addNew();
+
 });
 $("#myAcc").on('click', function(e){
     e.preventDefault();
