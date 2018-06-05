@@ -215,8 +215,10 @@ $('#search-area').on('click', '#search-button', function() {
     var item = $('<h6 class="mx-auto">').text(temp.toLowerCase());
     $('#ingr-list').append(item);
     userIngrList.push(item.text());
+    $("#search-bar").val('');
     console.log(userIngrList);
     addNew();
+    $('#search-bar')[0].reset();
   });
 
   // Recipe Search API
